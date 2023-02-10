@@ -1,0 +1,20 @@
+version: "2"
+services:
+  loadbalance:
+    build: ./build/loadbalance
+    container_name: loadbalance
+    volumes:
+      - ./src/loadbalance:/usr/share/nginx/html
+    links:
+      - nodejs01
+      - nodejs02
+    ports:
+      - 3000:80
+
+  nodejs01:
+    build: ./build/nodejs01
+    container_name: nodejs01
+
+  nodejs02:
+    build: ./build/nodejs02
+    container_name: nodejs02
